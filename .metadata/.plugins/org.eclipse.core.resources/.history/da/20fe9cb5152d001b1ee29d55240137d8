@@ -1,0 +1,76 @@
+package com.revature.data;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Set;
+
+import com.revature.beans.Bike;
+import com.revature.beans.User;
+import com.revature.utils.ConnectionUtil;
+
+
+public class BikePostgres implements BikeDAO {
+	
+	private ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
+
+	@Override
+	public Bike create(Bike b) throws Exception {
+		Bike bike = null;
+		
+		try(Connection con = cu.getConnection()){
+			con.setAutoCommit(false);
+
+//insert into bike(id, brand, status_id, owner_id, year, color) values (default, 'Felt', 3, 2, '2008', 'red');
+
+			String sql = "insert into bike(id, brand, status_id, owner_id, year, color) values (default, ?, ? , ?, ? , ?)";
+	
+			String[] keys = {"id"};
+			PreparedStatement pstmt = con.prepareStatement(sql, keys);
+			pstmt.setString(1, b.getBrand());
+			pstmt.setInt(2, b.getStatus().getId());
+			pstmt.setInt(3, b.getOwnerID());
+			pstmt.setString(4, b.getYear());
+			pstmt.setString(5, b.getColor());
+			
+			pstmt.executeUpdate();
+			
+			ResultSet results = pstmt.getGeneratedKeys();
+			if(results.next()) {
+				bike = b;
+				b.setId(results.getInt(1));
+				con.commit();	
+			}
+			else {
+				con.rollback();
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bike;
+	}
+	
+	@Override
+	public Bike read(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Bike b) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Set<Bike> List() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

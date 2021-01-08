@@ -1,0 +1,5 @@
+package com.revature.data;
+
+public interface BikeDAO extends GenericDAO<T> {
+
+}

@@ -1,0 +1,22 @@
+package com.revature.data;
+
+import java.util.Set;
+
+import com.revature.beans.Bike;
+
+public interface BikeDAO extends GenericDAO<Bike> {
+//create
+	public Integer create(Bike b) throws Exception;
+	
+//read
+	public Bike read(Integer id);
+	
+//update
+	public void update(Bike b);
+	
+//delete
+//	public void delete();
+	
+//list
+	public Set<Bike> List();
+}

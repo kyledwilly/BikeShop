@@ -1,0 +1,67 @@
+package com.revature.beans;
+
+import java.util.ArrayList;
+
+public class Bike {
+private int id;
+private String brand;
+private BikeStatus status;
+private String year;
+private Integer ownerID;
+private String color;
+private ArrayList<Offer> offers;
+
+public Bike() {
+	id = 0;
+	brand = "";
+	status = new BikeStatus();
+	year = "0";
+	ownerID = 0;
+	color = "";
+	offers = new ArrayList<Offer>();
+}
+
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getBrand() {
+	return brand;
+}
+public void setBrand(String brand) {
+	this.brand = brand;
+}
+public BikeStatus getStatus() {
+	return status;
+}
+public void setStatus(BikeStatus status) {
+	this.status = status;
+}
+public String getYear() {
+	return year;
+}
+public void setYear(String year) {
+	this.year = year;
+}
+public Integer getOwnerID() {
+	return ownerID;
+}
+public void setOwnerID(Integer ownerID) {
+	this.ownerID = ownerID;
+}
+public String getColor() {
+	return color;
+}
+public void setColor(String color) {
+	this.color = color;
+}
+public ArrayList<Offer> getOffers() {
+	return offers;
+}
+public void setOffers(ArrayList<Offer> offers) {
+	this.offers = offers;
+}
+
+}

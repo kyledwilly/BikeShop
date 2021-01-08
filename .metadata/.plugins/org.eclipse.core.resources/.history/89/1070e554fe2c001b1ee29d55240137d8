@@ -1,0 +1,37 @@
+package com.revature.data;
+
+import java.util.Set;
+
+import com.revature.beans.Bike;
+
+public class BikePostgres implements BikeDAO {
+	@Override
+	public Bike create(Bike b) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Bike read(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Bike b) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Set<Bike> List() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

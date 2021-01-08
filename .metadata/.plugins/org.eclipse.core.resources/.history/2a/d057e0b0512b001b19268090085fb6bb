@@ -1,0 +1,58 @@
+package com.revature.app;
+
+import java.util.Scanner;
+
+public class BikeShopController {
+	private static Scanner scan;
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		scan = new Scanner(System.in);
+		
+		System.out.println("----Welcome to Kyle's Bike Shop----");
+		System.out.println("Would you like to login or register?");
+loginLoop: while(true) {
+	String userInput = scan.nextLine();
+	if(userInput.toLowerCase() == "login") {
+		System.out.println("Enter Username: ");
+		String username = scan.nextLine();
+		System.out.println("Enter Password: ");
+		String userpass = scan.nextLine();
+		
+		//TODO checkpassword
+		
+	}
+	else if(userInput.toLowerCase() == "register") {
+		System.out.println("Enter Username: ");
+		String username = scan.nextLine();
+		System.out.println("Enter Password: ");
+		String userpass = scan.nextLine();
+		
+	}
+}
+
+		
+  mainLoop: while(true) {
+		System.out.println("(type help for list of commands");
+			System.out.println("#");
+			userInput = scan.nextLine();
+			
+			switch(userInput.toLowerCase()) {
+			case "help":
+				System.out.println("Commands you can use are: \n 1. login\n 2.\n 3.\n");
+				break;
+			
+			
+			case "quit":
+				System.out.println("goodbye...");
+				break mainLoop;
+			case "exit":
+				System.out.println("goodbye...");
+				break mainLoop;			
+			}
+		}
+		
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.revature.services;
+
+import com.revature.beans.User;
+
+public class CatServiceImpl implements UserService {
+
+	@Override
+	public Integer addUser(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

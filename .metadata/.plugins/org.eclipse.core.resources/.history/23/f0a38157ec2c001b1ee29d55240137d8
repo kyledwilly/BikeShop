@@ -1,0 +1,138 @@
+package com.revature.controller;
+
+import java.util.Scanner;
+
+import com.revature.beans.Role;
+import com.revature.beans.User;
+import com.revature.services.UserService;
+import com.revature.services.UserServiceImpl;
+
+import java.io.Console;
+public class BikeShopController {
+	private static Scanner scan;
+	private static UserService userServ = new UserServiceImpl();
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		scan = new Scanner(System.in);
+		
+		System.out.println("----Welcome to Kyle's Bike Shop----");
+
+loginLoop: while(true) {
+
+	System.out.println("Would you like to login or register?");
+	String userInput = scan.nextLine();
+	if(userInput.toLowerCase().equalsIgnoreCase("login")) {
+		System.out.println("Enter Username: ");
+		String username = scan.nextLine();
+		System.out.println("Enter Password: ");
+		String userpass = scan.nextLine();
+		System.out.println(username + " : " + userpass);
+		boolean authenticated = false;	
+		//TODO checkpassword
+		//TODO if time, mask password
+		if(authenticated) {
+			System.out.println("Authentication succeeded.");
+			break loginLoop;
+		}
+		else{
+			System.out.println("Authentication failed.");
+			continue loginLoop;
+		}
+	}
+	else if(userInput.toLowerCase().equalsIgnoreCase("register")) {
+//		System.out.println("Enter Username: ");
+//		String username = scan.nextLine();
+//		//todo checkunique
+//		System.out.println("Enter Password: ");
+//		String userpass = scan.nextLine();
+//		System.out.println(username + " : " + userpass);
+		User newUser = registerUser();
+		System.out.println(newUser.getName() + "was added");
+		break loginLoop;
+	}
+	else {
+		continue;
+	}
+}
+		
+  mainLoop: while(true) {
+		System.out.println("(type help for list of commands");
+			System.out.println("#");
+			String userInput = scan.nextLine();
+			
+			switch(userInput.toLowerCase()) {
+			case "help":
+				System.out.println("Commands you can use are: \n 1. \n 2.\n 3.\n");
+				break;
+			
+			case "quit":
+				System.out.println("goodbye...");
+				break mainLoop;
+			case "exit":
+				System.out.println("goodbye...");
+				break mainLoop;			
+			}
+		}
+	}
+//	private static User logInUser() {
+//		while (true) {
+//			System.out.println("Enter username: ");
+//			String username = scan.nextLine();
+//			System.out.println("Enter password: ");
+//			String password = scan.nextLine();
+//			
+//			//User user = personServ.getPersonByUsername(username);
+//			if (user == null) {
+//				System.out.print("Nobody exists with that username. ");
+//			} else if (user.getPassword().equals(password)) {
+//				System.out.println("Welcome back!");
+//				return user;
+//			} else {
+//				System.out.print("That password is incorrect. ");
+//			}
+//			System.out.println("Do you want to try again? 1 for yes, other for no.");
+//			int input = Integer.valueOf(scan.nextLine());
+//			if (input != 1) {
+//				break;
+//			}
+//		}
+//		return null;
+//	}
+	/*
+	 * returns person object if user successfully registered
+	 * returns null if user cancelled
+	 */
+	private static User registerUser() {
+		while (true) {
+			User user = new User();
+			System.out.println("Username:");
+			user.setName(scan.nextLine());
+			System.out.println("Password:");
+			user.setPassword(scan.nextLine());
+			Role r = new Role(1);
+			user.setRole(r);
+			System.out.println(user.getName() + " : " + user.getPassword());
+			
+			Integer newUserId = userServ.addUser(user);
+			user.setId(newUserId);
+			return user;
+//
+//				try {
+//					newAccount.setId(personServ.addPerson(newAccount));
+//					System.out.println("Confirmed. Welcome!");
+//					return newAccount;
+//				} catch (NonUniqueUsernameException e) {
+//					System.out.println("Sorry, that username is taken - let's try again.");
+//				}
+//				break;
+//			case 2:
+//				System.out.println("Okay, let's try again.");
+//				break;
+//			default:
+//				System.out.println("Okay, let's go back.");
+//				return null;
+		}
+	}
+}

@@ -1,0 +1,103 @@
+package com.revature.data;
+
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Set;
+
+import com.revature.beans.User;
+import com.revature.utils.ConnectionUtil;
+
+public class UserPostgres implements UserDAO {
+
+	private ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
+
+//	@Override
+//	public Person add(Person t) {
+//		Person p = null;
+//		
+//		try (Connection conn = cu.getConnection()) {
+//			conn.setAutoCommit(false);
+//			String sql = "insert into person values (default, ?, ?, ?)";
+//			String[] keys = {"id"};
+//			PreparedStatement pstmt = conn.prepareStatement(sql, keys);
+//			pstmt.setString(1, t.getUsername());
+//			pstmt.setString(2, t.getPassword());
+//			pstmt.setInt(3, t.getRole().getId());
+//			
+//			pstmt.executeUpdate();
+//			ResultSet rs = pstmt.getGeneratedKeys();
+//			
+//			if (rs.next()) {
+//				p = t;
+//				p.setId(rs.getInt(1));
+//				conn.commit();
+//			} else {
+//				conn.rollback();
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return p;
+//	}
+	
+	
+	@Override
+	public User create(User u) throws Exception {
+		// TODO Auto-generated method stub
+		User user = null;
+		
+		try(Connection con = cu.getConnection()){
+			con.setAutoCommit(false);
+		      
+			//"insert into users(id, username, passwd, user_role_id) values (default, 'george', 'pass', 1);\r\n"
+			String sql = "insert into users(id, username, passwd, user_role_id) values (default, ?, ? , ?);\r\n";
+			String[] keys = {"id"};
+			PreparedStatement pstmt = con.prepareStatement(sql, keys);
+			pstmt.setString(1, u.getName());
+			pstmt.setString(2, u.getPassword());
+			pstmt.setInt(3, u.getRole().getId());
+			
+			pstmt.executeUpdate();
+			
+			ResultSet results = pstmt.getGeneratedKeys();
+			if(results.next()) {
+				user = u;
+				u.setId(results.getInt(1));
+				con.commit();
+			}
+			else {
+				con.rollback();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	@Override
+	public User read(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(User u) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public Set<User> List() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

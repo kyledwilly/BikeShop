@@ -1,0 +1,31 @@
+package com.revature.app;
+
+import java.util.Scanner;
+
+public class BikeShopController {
+	private static Scanner scan;
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		scan = new Scanner(System.in);
+		
+		System.out.println("----Welcome to Kyle's Bike Shop----");
+		System.out.println("(type help for list of commands");
+		
+  mainLoop: while(true) {
+			System.out.println("#");
+			String userInput = scan.nextLine();
+			switch(userInput) {
+			case "hello":
+				System.out.println("hello to you too");
+				break;
+			case "goodbye":
+				System.out.println("goodbye to you too");
+				break mainLoop;
+			}
+		}
+		
+	}
+
+}

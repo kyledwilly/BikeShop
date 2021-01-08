@@ -1,0 +1,9 @@
+package com.revature.services;
+
+import com.revature.beans.Bike;
+import com.revature.beans.User;
+
+public interface BikeService {
+	public Integer addBike(Bike b);
+	public User getBikeById(Integer id);
+}
